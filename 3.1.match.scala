@@ -9,9 +9,27 @@ case class Cons[+A](head: A, tail: XList[A]) extends XList[A]
 object XList {
 
 	// variadic function (varargs)
-	// = a variadic function is a function of indefinite arity, i.e., one which accepts a variable number of arguments
-	// https://en.wikipedia.org/wiki/Variadic_function
 	//
+	// https://en.wikipedia.org/wiki/Variadic_function
+	// = a variadic function is a function of indefinite arity, i.e., one which accepts a variable number of arguments
+
+	// apply
+	//
+	// https://en.wikipedia.org/wiki/Apply
+	// = apply is a function that applies functions to arguments
+	//
+	// define function
+	// (x:Int) => x + 1
+	//
+	// assign fn reference to variable
+	// val f = (x:Int) => x + 1
+	//
+	// execute function
+	// f(1)
+	// or
+	// f.apply(1) 
+
+
 	def apply[A](as: A*): XList[A] =
 		if (as.isEmpty) Nil
 		else Cons(as.head, apply(as.tail: _*))

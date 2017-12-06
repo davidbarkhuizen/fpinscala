@@ -1,11 +1,15 @@
-import scala.annotation.tailrec
-
-// sealed => all implementations of the
+// sealed => all implementations of this trait must be within this physical file
+//
+// A+ = variance notation 
+// => A is a positive/covariant parameter of XList
+// => XList[B] is regarded as a subtype of XList[A] if B is a subtype of A
 //
 sealed trait XList[+A]
 case object Nil extends XList[Nothing]
 case class Cons[+A](head: A, tail: XList[A]) extends XList[A]
 
+// XList companion object
+//
 object XList {
 
 	// variadic function (varargs)
@@ -28,8 +32,7 @@ object XList {
 	// f(1)
 	// or
 	// f.apply(1) 
-
-
+	//
 	def apply[A](as: A*): XList[A] =
 		if (as.isEmpty) Nil
 		else Cons(as.head, apply(as.tail: _*))

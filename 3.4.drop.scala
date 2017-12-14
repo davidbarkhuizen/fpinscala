@@ -1,25 +1,27 @@
-sealed trait XList[+A]
-case object Nil extends XList[Nothing]
-case class Cons[+A](head: A, tail: XList[A]) extends XList[A]
+package fpinscala.examples
 
-object XList {
+sealed trait List[+A]
+case object Nil extends List[Nothing]
+case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
-	def apply[A](as: A*): XList[A] =
+object List {
+
+	def apply[A](as: A*): List[A] =
 		if (as.isEmpty) Nil
 		else Cons(as.head, apply(as.tail: _*))
 
-	def sum(ints: XList[Int]): Int = ints match {
+	def sum(ints: List[Int]): Int = ints match {
 		case Nil => 0
-		case Cons(x, xs) => x + XList.sum(xs)
+		case Cons(x, xs) => x + List.sum(xs)
 	}
 
-	def drop[A](l: XList[A], n: Int) : XList[A] =
+	def drop[A](l: List[A], n: Int) : List[A] =
 
 		n match {
 			case 0 => l
 			case _ => l match {
 					case Nil => Nil
-					case Cons(_, t) => XList.drop(t, n-1)
+					case Cons(_, t) => List.drop(t, n-1)
 				}
 		}	
 }
@@ -28,9 +30,9 @@ object Module {
 
 	def main(args : Array[String]) : Unit = {
 		
-		val l = XList(1,2,3,4,5)
+		val l = List(1,2,3,4,5)
 		println(l)
-		val truncated = XList.drop(l, 2)
+		val truncated = List.drop(l, 2)
 		println(truncated)
 	}
 }

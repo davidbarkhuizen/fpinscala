@@ -24,6 +24,17 @@ object List {
 		    	case true => List.dropWhile(t, predicate)
 		    }
 		}
+
+	def groupedDropWhile[A](l: List[A])(predicate: A => Boolean) : List[A] =
+
+		l match {
+			case Nil => Nil
+		    case Cons(h, t) => predicate(h) match {
+		    	case false => l
+		    	case true => List.groupedDropWhile(t)(predicate)
+		    }
+		}
+
 }
 
 object Module {
@@ -34,5 +45,8 @@ object Module {
 		println(l)
 		val truncated = List.dropWhile(l, (x:Int) => x <= 3)
 		println(truncated)
+
+		val groupedTruncated = List.groupedDropWhile(l)((x) => x <= 3) 
+		print(groupedTruncated)
 	}
 }

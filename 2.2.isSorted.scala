@@ -1,10 +1,10 @@
-import scala.annotation.tailrec
+package fpinscala.examples
 
 object Module {
 
 	def isSorted[A](as: Array[A], isOrdered: (A, A) => Boolean) : Boolean = {
 
-		@tailrec		
+		@annotation.tailrec		
 		def loop(n: Int) : Boolean = 
 
 			if (n + 1 >= as.length)					true

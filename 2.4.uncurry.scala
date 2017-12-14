@@ -1,3 +1,5 @@
+package fpinscala.examples
+
 object Module {
 	
 	def uncurry[A, B, C](f: A => (B => C)): (A, B) => C = {

@@ -1,10 +1,10 @@
-import scala.annotation.tailrec
+package fpinscala.examples
 
 object Module {
 
 	def fib(n : Int) : Int = {
 
-		@tailrec		
+		@annotation.tailrec	
 		def loop(m : Int, aleph: Int, beth: Int) : Int = {
 
 			val next = aleph + beth

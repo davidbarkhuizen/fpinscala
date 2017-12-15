@@ -1,3 +1,4 @@
+
 package fpinscala.examples
 
 // sealed => all implementations of this trait must be within this physical file
